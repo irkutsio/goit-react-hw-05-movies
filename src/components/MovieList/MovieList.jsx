@@ -1,19 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { fetchMoviesByName } from 'services';
 
-export const MovieList = ({ movies }) => {
-  return (
-    <div>
-      {movies.map(movie => {
-       
-        return (
-          <li key={movie.id}>
-     
-            <Link to={`${movie.id}`}>
-              <p>{movie.name}</p>
-            </Link>
-          </li>
-        );
-      })}
-    </div>
-  );
+export const MovieList = ({ movieName }) => {
+  useEffect(() => {
+    if (!movieName) {
+      return;
+    }
+    fetchMoviesByName(movieName);
+  }, [movieName]);
+
+  return <div>{movieName}</div>;
 };

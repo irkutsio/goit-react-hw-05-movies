@@ -1,12 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home';
-import Movies from './pages/Movies';
+
 import NotFound from 'components/pages/NotFound';
 
 import MovieDetails from 'components/pages/MovieDetails';
 import { Cast } from './Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
 import { SharedLayout } from './SharedLayout';
+import { Movies } from './pages/Movies';
 
 export const App = () => {
   return (

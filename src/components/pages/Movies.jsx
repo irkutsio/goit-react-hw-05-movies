@@ -1,15 +1,18 @@
 import { MovieList } from 'components/MovieList/MovieList';
-import { getMovies } from 'fakeMovie';
+import { SearchForm } from 'components/SearchForm/SearchForm';
+import { useState } from 'react';
 
-const Movies = () => {
-  const movies = getMovies();
+export const Movies = () => {
+  const [movieName, setMouvieName] = useState('');
+
+  const handleSearchSubmit = movie => {
+    setMouvieName(movie);
+  };
 
   return (
-    <div style={{ padding: '40px', color: 'blue' }}>
-      <h2>Movie list</h2>
-      <MovieList movies={movies} />
+    <div>
+      <SearchForm onSearchSubmit={handleSearchSubmit} />
+      <MovieList movieName={movieName} />
     </div>
   );
 };
-
-export default Movies;

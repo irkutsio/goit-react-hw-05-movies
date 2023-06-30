@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { HiOutlineSearch } from 'react-icons/hi';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -24,7 +25,12 @@ export const SearchForm = ({ onSearchSubmit }) => {
       <h2>Search film</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="movie" onChange={handlechange} />
-        <button type="submit">Search</button>
+        <button
+   
+          type="submit"
+        >
+          <HiOutlineSearch size="16" />
+        </button>
       </form>
     </div>
   );

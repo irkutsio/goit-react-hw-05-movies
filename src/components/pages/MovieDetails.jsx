@@ -1,26 +1,38 @@
+import { Loader } from 'components/Loader/Loader';
+import { MovieByIdInfo } from 'components/MovieByIdInfo/MovieByIdInfo';
+import { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
-import { getMovieById } from 'fakeMovie';
+import { fetchMoviesById } from 'services';
 
 const MovieDetails = () => {
+  const [movie, setMovie] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const { movieId } = useParams();
 
-  const movie = getMovieById(movieId);
-  console.log(movie);
+  useEffect(() => {
+    getMovieById(movieId);
+  }, [movieId]);
+
+  const getMovieById = async movieId => {
+    setIsLoading(true);
+    try {
+      const fetchedMovieById = await fetchMoviesById(movieId);
+      setMovie(fetchedMovieById);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div>
-      <h3>MovieDetails</h3>
-      <p>{movie.id}</p>
-      <p>Name: {movie.name}</p>
-      <p>
-        {' '}
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus sunt
-        excepturi nesciunt iusto dignissimos assumenda ab quae cupiditate a, sed
-        reprehenderit? Deleniti optio quasi, amet natus reiciendis atque fuga
-        dolore? Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Impedit suscipit quisquam incidunt commodi fugiat aliquam praesentium
-        ipsum quos unde voluptatum?
-      </p>
+      {isLoading && <Loader/>}
+      {error && <p>{error} </p>}
+      <MovieByIdInfo movie={movie} />
+
       <ul>
         {' '}
         <li>

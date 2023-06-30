@@ -1,5 +1,22 @@
-const NotFound = () => {
-    return <div>OOops...not found 😥</div>
-}
+import notFound from 'images/notFound.jpg';
 
-export default NotFound
+const NotFound = () => {
+  return (
+    <div>
+      <img
+        style={{
+          display: 'block',
+          marginTop: '60px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          width: '500px',
+          
+        }}
+        src={notFound}
+        alt="not Found"
+      />
+    </div>
+  );
+};
+
+export default NotFound;

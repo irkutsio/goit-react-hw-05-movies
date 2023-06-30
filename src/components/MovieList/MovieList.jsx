@@ -1,13 +1,38 @@
-import { useEffect } from 'react';
+import { MoviesByName } from 'components/MoviesByName/MoviesByName';
+import { useEffect, useState } from 'react';
 import { fetchMoviesByName } from 'services';
+import { Loader } from 'components/Loader/Loader';
 
 export const MovieList = ({ movieName }) => {
+  const [moviesByName, setMoviesByName] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    if (!movieName) {
-      return;
-    }
-    fetchMoviesByName(movieName);
+  // if(!moviesByName) return
+    const getMoviesByName = async movieName => {
+      setIsLoading(true);
+      try {
+        const fetchedMoviesByName = await fetchMoviesByName(movieName);
+        setMoviesByName(fetchedMoviesByName.results);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getMoviesByName(movieName);
   }, [movieName]);
 
-  return <div>{movieName}</div>;
+
+
+  return (
+    <div>
+      {isLoading && <Loader/>}
+      {error && <p> {error} </p>}
+      <MoviesByName  moviesByName={moviesByName}/>
+    </div>
+  );
 };
+
+// console.log(fetchMoviesByName('batman'))

@@ -1,3 +1,4 @@
+import { Loader } from 'components/Loader/Loader';
 import { TrandMoviesList } from 'components/TrandMoviesList/TrandMoviesList';
 import { useEffect, useState } from 'react';
 import { fetchMovies } from 'services';
@@ -5,8 +6,7 @@ import { fetchMovies } from 'services';
 const HomePage = () => {
   const [trandingMovies, setTrandingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  // const [isEmpty, setIsEmpty] = useState(false);
-  const [error, setError] = useState(null);
+ const [error, setError] = useState(null);
 
   useEffect(() => {
     const getTrandingMovie = async () => {
@@ -24,17 +24,16 @@ const HomePage = () => {
     getTrandingMovie();
   }, []);
 
-
-// console.log(trandingMovies)
+  // console.log(trandingMovies)
 
   return (
     <>
-      {isLoading && <p>Loading......</p>}
+      {isLoading && <Loader/>}
       {error && <p>{error}</p>}
       <div style={{ padding: '40px', color: 'red', backgroundColor: 'beige' }}>
-        Home page
+        Trand Movies:
       </div>
-     <TrandMoviesList trandMovies={trandingMovies}/>
+      <TrandMoviesList trandMovies={trandingMovies} />
     </>
   );
 };

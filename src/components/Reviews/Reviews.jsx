@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Loader } from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import {  useParams } from 'react-router-dom';
@@ -45,3 +46,4 @@ export const Reviews = () => {
   </div>
   );
 };
+

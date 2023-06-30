@@ -24,7 +24,7 @@ const HomePage = () => {
     getTrandingMovie();
   }, []);
 
-  // console.log(trandingMovies)
+ 
 
   return (
     <>

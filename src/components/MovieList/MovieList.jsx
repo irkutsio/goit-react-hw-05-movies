@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import { MoviesByName } from 'components/MoviesByName/MoviesByName';
 import { useEffect, useState } from 'react';
 import { fetchMoviesByName } from 'services';
@@ -35,4 +37,9 @@ export const MovieList = ({ movieName }) => {
   );
 };
 
-// console.log(fetchMoviesByName('batman'))
+
+MovieList.propTypes = {
+  movieName:  PropTypes.string.isRequired
+}
+
+

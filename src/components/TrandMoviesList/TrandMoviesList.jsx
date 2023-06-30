@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
 export const TrandMoviesList = ({ trandMovies }) => {
@@ -16,3 +17,8 @@ export const TrandMoviesList = ({ trandMovies }) => {
     </ul>
   );
 };
+
+
+TrandMoviesList.propTypes = {
+  trandMovies: PropTypes.array.isRequired
+}

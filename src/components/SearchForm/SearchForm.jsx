@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Form } from './SearchForm.styled';
+
 
 export const SearchForm = ({ onSearchSubmit }) => {
   const [movie, setMovie] = useState('');
@@ -27,15 +29,15 @@ export const SearchForm = ({ onSearchSubmit }) => {
   };
 
   return (
-    <div style={{ padding: '40px', color: 'blue' }}>
+    <Form >
       <h2>Search film</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="movie" onChange={handleChange} />
         <button type="submit">
-          <HiOutlineSearch size="16" />
+          <HiOutlineSearch size="17" />
         </button>
       </form>
-    </div>
+    </Form>
   );
 };
 

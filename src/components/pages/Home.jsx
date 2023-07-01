@@ -34,8 +34,8 @@ const HomePage = () => {
     <>
       {isLoading && <Loader />}
       {error && <p>{error}</p>}
-      <div style={{ padding: '40px', color: 'red', backgroundColor: 'beige' }}>
-        Trand Movies:
+      <div style={{ padding: '24px', color: 'black', fontSize: '24px'}}>
+        Trand Movies for Today:
       </div>
       <TrandMoviesList trandMovies={trandingMovies} />
     </>

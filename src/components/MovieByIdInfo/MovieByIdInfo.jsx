@@ -20,7 +20,7 @@ export const MovieByIdInfo = ({ movie }) => {
     
         <Genres>
           {genreNames &&
-            genreNames.map((genre, index) => <li key={index}>{genre}</li>)}
+            genreNames.map((genre, index) => <li key={index}>{genre}/</li>)}
         </Genres>
         <p>{overview}</p>
       </Descr>

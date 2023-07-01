@@ -17,5 +17,5 @@ width: 600px;
 export const Descr = styled.div`
   width: 600px;
   margin-top: 86px;
-  font-size: 20px;
+  font-size: 16px;
 `;

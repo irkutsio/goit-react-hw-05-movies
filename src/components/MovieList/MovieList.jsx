@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import { MoviesByNameList } from 'components/MoviesByNameList/MoviesByNameList';
 import { useEffect, useState } from 'react';
 import { fetchMoviesByName } from 'services';
 import { Loader } from 'components/Loader/Loader';
 
-
 export const MovieList = ({ movieName }) => {
   const [moviesByName, setMoviesByName] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-
   useEffect(() => {
-  if(!movieName) return
+    if (!movieName) {
+      return;
+    }
     const getMoviesByName = async movieName => {
       setIsLoading(true);
       try {
@@ -28,20 +28,19 @@ export const MovieList = ({ movieName }) => {
     getMoviesByName(movieName);
   }, [movieName]);
 
-
-
   return (
     <div>
-      {isLoading && <Loader/>}
+      {isLoading && <Loader />}
       {error && <p> {error} </p>}
-      <MoviesByNameList  moviesByName={moviesByName}/>
+      {!moviesByName.length ? (
+        <div>There is no movie for your request</div>
+      ) : (
+        <MoviesByNameList moviesByName={moviesByName} />
+      )}
     </div>
   );
 };
 
-
 MovieList.propTypes = {
-  movieName:  PropTypes.string.isRequired
-}
-
-
+  movieName: PropTypes.string.isRequired,
+};

@@ -11,9 +11,8 @@ export const MovieList = ({ movieName }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!movieName) {
-      return;
-    }
+    if (moviesByName.length === 0) return;
+
     const getMoviesByName = async movieName => {
       setIsLoading(true);
       try {
@@ -26,13 +25,13 @@ export const MovieList = ({ movieName }) => {
       }
     };
     getMoviesByName(movieName);
-  }, [movieName]);
+  }, [movieName,moviesByName]);
 
   return (
     <div>
       {isLoading && <Loader />}
       {error && <p> {error} </p>}
-      {!moviesByName.length ? (
+      {moviesByName.length === 0 ? (
         <div>There is no movie for your request</div>
       ) : (
         <MoviesByNameList moviesByName={moviesByName} />

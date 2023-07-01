@@ -8,14 +8,20 @@ export const Genres = styled.ul`
 `;
 
 export const Container = styled.div`
-width: 600px;
+  width: 600px;
   padding: 24px;
+`;
+
+export const ImgWrap = styled.div`
   display: flex;
   gap: 24px;
+  align-items: flex-start;
+
+  img {
+    display: block;
+  }
 `;
 
 export const Descr = styled.div`
-  width: 600px;
-  margin-top: 86px;
   font-size: 16px;
 `;

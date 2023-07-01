@@ -1,34 +1,37 @@
 import PropTypes from 'prop-types';
 import { HiOutlineSearch } from 'react-icons/hi';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export const SearchForm = ({ onSearchSubmit }) => {
   const [movie, setMovie] = useState('');
-
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const handlechange = e => {
+  useEffect(() => {
+    const query = searchParams.get('query') || '';
+    onSearchSubmit(query);
+  }, [searchParams, onSearchSubmit]);
+
+  const handleChange = e => {
     const { value } = e.target;
     setMovie(value);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    setSearchParams({ name: movie });
-    const query = searchParams.get('name');
-    onSearchSubmit(query);
+    if (!movie) {
+      setSearchParams({});
+    } else {
+      setSearchParams({ query: movie });
+    }
   };
 
   return (
     <div style={{ padding: '40px', color: 'blue' }}>
       <h2>Search film</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="movie" onChange={handlechange} />
-        <button
-   
-          type="submit"
-        >
+        <input type="text" name="movie" onChange={handleChange} />
+        <button type="submit">
           <HiOutlineSearch size="16" />
         </button>
       </form>

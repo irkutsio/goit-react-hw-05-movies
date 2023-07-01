@@ -1,12 +1,16 @@
 import { Loader } from 'components/Loader/Loader';
+
 import { TrandMoviesList } from 'components/TrandMoviesList/TrandMoviesList';
 import { useEffect, useState } from 'react';
+
 import { fetchMovies } from 'services';
 
 const HomePage = () => {
   const [trandingMovies, setTrandingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
- const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
+
+
 
   useEffect(() => {
     const getTrandingMovie = async () => {
@@ -24,11 +28,11 @@ const HomePage = () => {
     getTrandingMovie();
   }, []);
 
- 
+
 
   return (
     <>
-      {isLoading && <Loader/>}
+      {isLoading && <Loader />}
       {error && <p>{error}</p>}
       <div style={{ padding: '40px', color: 'red', backgroundColor: 'beige' }}>
         Trand Movies:

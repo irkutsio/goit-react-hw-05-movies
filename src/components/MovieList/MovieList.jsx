@@ -1,17 +1,19 @@
 import PropTypes from 'prop-types'
 
-import { MoviesByName } from 'components/MoviesByName/MoviesByName';
+import { MoviesByNameList } from 'components/MoviesByNameList/MoviesByNameList';
 import { useEffect, useState } from 'react';
 import { fetchMoviesByName } from 'services';
 import { Loader } from 'components/Loader/Loader';
+
 
 export const MovieList = ({ movieName }) => {
   const [moviesByName, setMoviesByName] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
-  // if(!moviesByName) return
+  if(!movieName) return
     const getMoviesByName = async movieName => {
       setIsLoading(true);
       try {
@@ -32,7 +34,7 @@ export const MovieList = ({ movieName }) => {
     <div>
       {isLoading && <Loader/>}
       {error && <p> {error} </p>}
-      <MoviesByName  moviesByName={moviesByName}/>
+      <MoviesByNameList  moviesByName={moviesByName}/>
     </div>
   );
 };

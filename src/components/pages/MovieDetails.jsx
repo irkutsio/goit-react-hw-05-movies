@@ -1,7 +1,7 @@
 import { Loader } from 'components/Loader/Loader';
 import { MovieByIdInfo } from 'components/MovieByIdInfo/MovieByIdInfo';
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMoviesById } from 'services';
 
 const MovieDetails = () => {
@@ -10,6 +10,13 @@ const MovieDetails = () => {
   const [error, setError] = useState(null);
 
   const { movieId } = useParams();
+
+  const location = useLocation();
+  console.log(location)
+
+const backLinkRef = useRef(location.state?.from ?? '/movie')
+
+
 
   useEffect(() => {
     getMovieById(movieId);
@@ -29,8 +36,9 @@ const MovieDetails = () => {
 
   return (
     <div>
-      {isLoading && <Loader/>}
+      {isLoading && <Loader />}
       {error && <p>{error} </p>}
+      <Link to={backLinkRef.current}>⬅ go back</Link>
       <MovieByIdInfo movie={movie} />
 
       <ul>

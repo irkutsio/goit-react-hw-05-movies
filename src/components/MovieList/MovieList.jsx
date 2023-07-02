@@ -9,6 +9,7 @@ export const MovieList = ({ movieName }) => {
   const [moviesByName, setMoviesByName] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   useEffect(() => {
     // if (moviesByName.length === 0) return;
@@ -17,6 +18,9 @@ export const MovieList = ({ movieName }) => {
       setIsLoading(true);
       try {
         const fetchedMoviesByName = await fetchMoviesByName(movieName);
+        if (fetchedMoviesByName.results.length === 0) {
+          setIsEmpty(true);
+        }
         setMoviesByName(fetchedMoviesByName.results);
       } catch (error) {
         setError(error.message);
@@ -24,18 +28,18 @@ export const MovieList = ({ movieName }) => {
         setIsLoading(false);
       }
     };
-    getMoviesByName(movieName);
+    if (movieName) {
+      getMoviesByName(movieName);
+    }
   }, [movieName]);
 
   return (
     <div>
       {isLoading && <Loader />}
       {error && <p> {error} </p>}
-      {moviesByName.length === 0 ? (
-        <div>There is no movie for your request</div>
-      ) : (
-        <MoviesByNameList moviesByName={moviesByName} />
-      )}
+      {isEmpty && <div>There is no movie for your request</div>}
+
+      <MoviesByNameList moviesByName={moviesByName} />
     </div>
   );
 };

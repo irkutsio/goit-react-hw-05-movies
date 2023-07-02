@@ -30,7 +30,7 @@ export const SearchForm = ({ onSearchSubmit }) => {
 
   return (
     <Form >
-      <h2>Search film</h2>
+      <h2 style={{color:'#170b2a'}}>Find movie by word:</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="movie" onChange={handleChange} />
         <button type="submit">

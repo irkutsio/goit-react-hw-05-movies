@@ -12,11 +12,9 @@ const MovieDetails = () => {
   const { movieId } = useParams();
 
   const location = useLocation();
-  console.log(location)
+  console.log(location);
 
-const backLinkRef = useRef(location.state?.from ?? '/movie')
-
-
+  const backLinkRef = useRef(location.state?.from ?? '/movie');
 
   useEffect(() => {
     getMovieById(movieId);
@@ -38,7 +36,21 @@ const backLinkRef = useRef(location.state?.from ?? '/movie')
     <div>
       {isLoading && <Loader />}
       {error && <p>{error} </p>}
-      <Link to={backLinkRef.current}>⬅ go back</Link>
+      <Link to={backLinkRef.current}>
+        <button
+          style={{
+            cursor:'pointer',
+            marginTop: '10px',
+            backgroundColor: 'transparent',
+            border: 'none',
+            color:'#170b2a',
+            fontSize: '16px',
+          }}
+        >
+          {' '}
+          ⬅ go back
+        </button>
+      </Link>
       <MovieByIdInfo movie={movie} />
 
       <ul>

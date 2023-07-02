@@ -7,6 +7,7 @@ export const Cast = () => {
   const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const { movieId } = useParams();
 
@@ -18,6 +19,9 @@ export const Cast = () => {
     setIsLoading(true);
     try {
       const fetchedCast = await fetchCast(movieId);
+      if (fetchedCast.cast.length === 0) {
+        setIsEmpty(true);
+      }
       setCast(fetchedCast.cast);
     } catch (error) {
       setError(error.message);
@@ -26,18 +30,23 @@ export const Cast = () => {
     }
   };
 
-
-
   return (
     <div>
-      {isLoading && <Loader/>}
-      {error && <p>{error} </p>}
-      <ul>{cast.map(({profile_path,name,character,id}) => {
-        return <li key={id}><h3>{name}</h3>
-        <img src={`https://image.tmdb.org/t/p/w200${profile_path}`} alt={name} />
-        <p>{character}</p>
-        </li>
-      })}</ul>
+      {isLoading && <Loader />}
+      {error && <p>{error}</p>}
+      {isEmpty && <p>no cast</p>}
+      <ul>
+        {cast.map(({ profile_path, name, character, id }) => (
+          <li key={id}>
+            <h3>{name}</h3>
+            <img
+              src={`https://image.tmdb.org/t/p/w200${profile_path}`}
+              alt={name}
+            />
+            <p>{character}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

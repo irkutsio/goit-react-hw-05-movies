@@ -13,7 +13,14 @@ body {
 
 a{
   text-decoration: none;
+  color:  #170b2a;
 }
+
+a:hover
+ {
+  color:rgb(99, 71, 125);
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

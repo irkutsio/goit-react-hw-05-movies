@@ -10,8 +10,6 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-
-
   useEffect(() => {
     const getTrandingMovie = async () => {
       setIsLoading(true);
@@ -28,15 +26,11 @@ const HomePage = () => {
     getTrandingMovie();
   }, []);
 
-
-
   return (
     <>
       {isLoading && <Loader />}
       {error && <p>{error}</p>}
-      <div style={{ padding: '24px', color: 'black', fontSize: '24px'}}>
-        Trand Movies for Today:
-      </div>
+
       <TrandMoviesList trandMovies={trandingMovies} />
     </>
   );

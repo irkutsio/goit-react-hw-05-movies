@@ -5,11 +5,23 @@ export const Genres = styled.ul`
   display: flex;
   gap: 8px;
   padding: 0;
+  color: #170b2a;
 `;
+
+export const Overview = styled.p`
+color: #170b2a;
+`
+
+export const Rating = styled.p`
+color: #170b2a;`
 
 export const Container = styled.div`
   width: 600px;
   padding: 24px;
+
+  h2 {
+    color: #170b2a;
+  }
 `;
 
 export const ImgWrap = styled.div`
@@ -19,6 +31,7 @@ export const ImgWrap = styled.div`
 
   img {
     display: block;
+    border: 4px solid gold;
   }
 `;
 

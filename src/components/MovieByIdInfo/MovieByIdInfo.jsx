@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Genres, Container, Descr, ImgWrap } from './MovieByIdInfo.styled';
+import { Genres, Container,Rating,Overview, Descr, ImgWrap } from './MovieByIdInfo.styled';
 
 export const MovieByIdInfo = ({ movie }) => {
   const { title, poster_path, overview, genres, vote_average } = movie;
@@ -9,7 +9,7 @@ export const MovieByIdInfo = ({ movie }) => {
     <Container>
       {' '}
       <h2>{title}</h2>
-      <p>Rating: {vote_average}</p>
+      <Rating>Rating: {vote_average}</Rating>
       <ImgWrap>
         {' '}
         <div>
@@ -23,7 +23,7 @@ export const MovieByIdInfo = ({ movie }) => {
             {genreNames &&
               genreNames.map((genre, index) => <li key={index}>{genre}/</li>)}
           </Genres>
-          <p>{overview}</p>
+          <Overview>{overview}</Overview>
         </Descr>
       </ImgWrap>
     </Container>

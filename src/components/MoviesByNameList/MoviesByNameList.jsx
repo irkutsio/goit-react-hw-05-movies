@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
+import { MovieByNameList} from './MoviesByNameList.styled';
 
 export const MoviesByNameList = ({ moviesByName }) => {
   const location = useLocation();
 
   return (
     <div>
-      <ul>
+      <MovieByNameList>
         {moviesByName.map(movie => {
           return (
             <li key={movie.id}>
@@ -16,7 +17,7 @@ export const MoviesByNameList = ({ moviesByName }) => {
             </li>
           );
         })}
-      </ul>
+      </MovieByNameList>
     </div>
   );
 };

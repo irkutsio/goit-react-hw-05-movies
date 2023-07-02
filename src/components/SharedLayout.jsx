@@ -3,18 +3,18 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 
 const StyledLink = styled(NavLink)`
-  color: black;
+  color: #170b2a;
 
   &.active {
 
-    color: orange;
+    color: #ffec82;
 
   }
 `;
 
 const Container = styled.header`
   height: 80px;
-  background-color: #c6dede;
+  background-color: #A0A0A0;
   font-size: 40px;
 `;
 
